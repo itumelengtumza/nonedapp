@@ -1,0 +1,110 @@
+.card-background-page {
+
+    ion-card {
+      position: relative;
+      text-align: center;
+    }
+  
+    .card-title {
+      position: absolute;
+      top: 36%;
+      font-size: 2.0em;
+      width: 100%;
+      font-weight: bold;
+      color: #fff;
+    }
+  
+    .card-subtitle {
+      font-size: 1.0em;
+      position: absolute;
+      top: 52%;
+      width: 100%;
+      color: #fff;
+    }
+  
+  }
+
+  :host {  
+    --super-tabs-toolbar-background: #cb6fac;
+    --st-indicator-color: #fff;
+    color: #fff;
+  }
+.header-img {
+  img {
+    height: 35vh;
+    width: 100%;
+  }
+  position: relative;
+  ion-grid {
+    position: absolute;
+    top:0;
+    width: 100%;
+    height: 100%;
+  }
+  ion-row {
+    height: 65%;
+  }
+  ion-col {
+    background-color: aqua;
+    padding:10px;
+    img {
+      height: 5vh;
+      width: auto;
+    }
+  }
+}
+ion-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.circular-border {
+  border: solid white 3px ;
+  border-radius: 50%;
+}
+.this-week {
+  position: relative;
+  margin-top: -20px;
+  img {
+    height: 8vh;
+  }
+  h5 {
+    font-weight: 700;
+    font-size:17px;
+  }
+}
+.productivity {
+  ion-icon {
+    background-color:  #cb6fac;
+    border-radius: 50%;
+    padding: 10px;
+    color:#fff;
+    font-size:24px;
+    float: left;
+  }
+  .productivity-content {
+    width: 80%;
+    float: right;
+  }
+  h5 {
+    font-size:17px;
+    font-weight: 700;
+  }
+  ion-card-content {
+    padding: 0;
+  }
+  ion-card-title {
+    padding-top: 10px;
+  }
+  a {
+    text-decoration: none;
+  }
+}
+.warning {
+  ion-icon {
+    background-color: #ff0000;
+  }
+}
+
+  

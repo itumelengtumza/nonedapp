@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar color="mango">
+  <ion-title>Events Nights</ion-title>
+  </ion-toolbar>
+  </ion-header>
+  
+  <ion-content padding='true'>
+    <div class="center">
+      <!--<app-logo></app-logo>-->
+      <h1>Sign In</h1>
+    </div>
+    <form>
+    <ion-list>
+      <ion-item>
+        <ion-label position="stacked">Email</ion-label>
+        <ion-input autocomplete="off" type="text" name="email" [(ngModel)]="postData.email"></ion-input>
+      </ion-item>
+    
+      <ion-item>
+        <ion-label position="stacked">Password</ion-label>
+        <ion-input autocomplete="off" type="password" name="password" [(ngModel)]="postData.password"></ion-input>
+      </ion-item>
+    </ion-list>
+    <div class="center">
+      <p><a routerLink='/signup'>Create Account</a></p>
+    </div>
+      <ion-button expand="block" share="round" color="success" (click)="loginAction()">Sign In</ion-button>
+    </form>
+</ion-content>

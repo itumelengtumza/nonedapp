@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar color="mango">
+  <ion-title>Registration</ion-title>
+  </ion-toolbar>
+  </ion-header>
+  
+  <ion-content padding='true'>
+    <div class="center">
+     <!--<app-logo></app-logo>--> 
+      <h1>Create Account</h1>
+    </div>
+  <form [formGroup]="form">
+  <ion-list>
+    <ion-item>
+      <ion-label position="stacked">Name</ion-label>
+      <ion-input  formControlName="name"autocomplete="off" name="name" type="text"></ion-input>
+      </ion-item>
+    <ion-item>
+    <ion-label position="stacked">Email</ion-label>
+    <ion-input formControlName="email" autocomplete="off" name="email" type="email" ></ion-input>
+    </ion-item>
+    <ion-item>
+    <ion-label position="stacked">Password</ion-label>
+    <ion-input formControlName="password" autocomplete="off" name="password" type="password"></ion-input>
+    </ion-item>
+    
+    
+    <div *ngFor="let entry of user_type; let i = index">
+      <ion-item >
+        <ion-label>{{entry.val}}</ion-label>
+        <ion-checkbox (ionChange)="do_sth(i)" slot="end" color={{entry.color}} name="user_type_checkbox"></ion-checkbox>
+      </ion-item>
+      <ion-item *ngIf="entry.isChecked && entry.val !== 'Patron'" >
+        <ion-label position="stacked">{{entry.text}}</ion-label>
+        <ion-input [formControlName]="entry.val"autocomplete="off" name="name" type="text"></ion-input>
+      </ion-item>
+  </div>
+    </ion-list>
+    <div class="center">
+      <p >Already have an account? <a routerLink='/login'>SIGN IN</a></p>
+    </div>
+    <ion-button expand="block" [disabled]="!(form.valid&&formValid)" share="round" color="success" (click)="signupAction()">Registration</ion-button>
+    </form>
+    </ion-content>
