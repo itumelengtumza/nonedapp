@@ -10,20 +10,22 @@
       <ion-row>
         <ion-col>
           <img src="assets/img/womb_small.png" />
-          ion-col
-          ion-col
+          <span class="side-text">
+            Size Of
+            {{baby_fruit_size}}
+          </span>
         </ion-col>
         <ion-col class="circular-border" size="5">
-          ion-col
-          ion-col
-          ion-col
-          ion-col
+          {{weeks_left}}
+          Weeks
+          Pregnant
         </ion-col>
         <ion-col>
-          ion-col
-          ion-col
-          ion-col
-          ion-col
+          <span class="side-text">
+            {{days_pregnant}}<br/>
+            DAYS TO
+            BIRTH
+          </span>
         </ion-col>
       </ion-row>
     </ion-grid>
@@ -58,7 +60,7 @@
               <ion-card-title>
                 <h5>Productivity</h5>
               </ion-card-title>
-              <p>0 TASKS DONE</p>
+              <p>{{progress*100}}% TASKS DONE</p>
               <ion-progress-bar value={{progress}}></ion-progress-bar>
               <!--<ion-button fill="outline" slot="end">View</ion-button>-->
             </div>
@@ -92,6 +94,30 @@
   </div>
   <div class="productivity center">
     <a routerLink='/cal-page'>
+      <ion-card>
+        <ion-card-content>
+          <ion-card-title>
+            <h5>ANTENATAL CHECK-UPS</h5>
+          </ion-card-title>
+          <ion-grid>
+            <ion-row>
+              <ion-col size="2">
+                <ion-icon name="calendar-sharp"></ion-icon>
+              </ion-col>
+              <ion-col>
+                <div class="productivity-content">
+                  <p>Set Your Check-Ups Date</p>
+                  <p>View Your Check-Ups Date</p>
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card-content>
+      </ion-card>
+    </a>
+  </div>
+  <div class="productivity center">
+    <a routerLink='/event-page'>
       <ion-card>
         <ion-card-content>
           <ion-card-title>

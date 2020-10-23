@@ -45,11 +45,15 @@
     height: 65%;
   }
   ion-col {
-    background-color: aqua;
+    color: #fff;
+    font-weight: bolder;
     padding:10px;
     img {
       height: 5vh;
       width: auto;
+    }
+    .side-text {
+      font-size: 14px;
     }
   }
 }

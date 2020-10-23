@@ -18,6 +18,14 @@ const routes: Routes = [
   {
     path: 'cal-page',
     loadChildren: () => import('./pages/cal-page/cal-page.module').then( m => m.CalPagePageModule)
+  },
+  {
+    path: 'event-modal',
+    loadChildren: () => import('./pages/event-modal/event-modal.module').then( m => m.EventModalPageModule)
+  },
+  {
+    path: 'event-page',
+    loadChildren: () => import('./pages/event-page/event-page.module').then( m => m.EventPagePageModule)
   }
 ];
 @NgModule({

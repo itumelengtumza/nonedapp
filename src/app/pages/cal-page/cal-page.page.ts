@@ -134,6 +134,7 @@ export class CalPagePage implements OnInit {
         let event = result.data.event;
         if (event.allDay) {
           let start = event.startTime;
+          console.log(event.startTime);
           event.startTime = new Date(
             Date.UTC(
               start.getUTCFullYear(),
@@ -144,12 +145,21 @@ export class CalPagePage implements OnInit {
           event.endTime = new Date(
             Date.UTC(
               start.getUTCFullYear(),
-              start.getUTCMonth(),
+              start.getUTCMonth() + 1,
               start.getUTCDate() + 1
             )
           );
         }
-        console.log(event.startTime);
+        let date_now = Date.now();
+        let diff_in_time = event.endTime.getTime() - event.startTime.getTime();
+        let days_pregnant = diff_in_time / (1000 * 3600 * 24);
+        let weeks_pregnant = Math.floor(days_pregnant / 7);
+        let weeks_left = 40 - weeks_pregnant;
+        console.log(date_now);
+        console.log(event.startTime.getTime());
+        console.log(days_pregnant);
+        console.log(weeks_pregnant);
+        console.log(weeks_left);
         this.eventSource.push(result.data.event);
         this.myCal.loadEvents();
       }

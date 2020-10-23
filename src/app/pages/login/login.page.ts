@@ -47,7 +47,7 @@ if (res.user) {
 this.storageService.store(AuthConstants.AUTH, res.user);
 this.router.navigate(['/home']);
 } else {
-this.toastService.presentToast('Incorrect email and password.');
+this.toastService.presentToast(res.msg);
 }
 },
 (error: any) => {
