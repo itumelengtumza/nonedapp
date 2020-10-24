@@ -38,3 +38,26 @@
     --ion-text-color: #ffffff;
     background-color: #cb6fac;
 }
+
+ion-header {
+    ion-title, ion-icon {
+        color:#fff;
+    }
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    background: url(assets/img/cal-icon.png) no-repeat;
+}
+
+ion-content {
+    color: #fff;
+    a {
+        color:#cb6fac;
+        text-decoration: none;
+    }
+    ion-button {
+        span {
+            color:#fff;
+        }
+    }
+}

@@ -4,6 +4,7 @@ import { AuthConstants } from '../../config/auth-constants';
 import { AuthService } from './../../services/auth.service';
 import { StorageService } from './../../services/storage.service';
 import { ToastService } from './../../services/toast.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
 selector: 'app-login',
@@ -16,6 +17,11 @@ email: '',
 password: ''
 };
 
+form = new FormGroup({
+    email: new FormControl('', Validators.required),
+    password: new FormControl('', Validators.required)
+  });
+
 constructor(
 private router: Router,
 private authService: AuthService,
@@ -25,39 +31,29 @@ private toastService: ToastService
 
 ngOnInit() {}
 
-validateInputs() {
-console.log(this.postData);
-let email = this.postData.email.trim();
-let password = this.postData.password.trim();
-return (
-this.postData.email &&
-this.postData.password &&
-email.length > 0 &&
-password.length > 0
-);
-}
+    loginAction() {
+        this.postData.email = this.form.get('email').value.trim();
+        this.postData.password = this.form.get('password').value.trim();
+        /*if (this.form.valid) {
+            console.log("Login form Submitted!");
+            this.form.reset();
+        }*/
+        this.authService.login(this.postData).subscribe(
+        (res: any) => {
+            console.log(res);
+            if (!res.error) {//no error encounted
+                this.form.reset();
+                // Storing the User data.
+                this.storageService.store(AuthConstants.AUTH, res.user);
+                this.router.navigate(['/home']);
+            } else {
+                this.toastService.presentToast(res.msg);
+            }
+        },
+        (error: any) => {
+            this.toastService.presentToast('Network Issue.');
+            }
+        );
 
-loginAction() {
-if (this.validateInputs()) {
-this.authService.login(this.postData).subscribe(
-(res: any) => {
-    console.log(res);
-if (res.user) {
-// Storing the User data.
-this.storageService.store(AuthConstants.AUTH, res.user);
-this.router.navigate(['/home']);
-} else {
-this.toastService.presentToast(res.msg);
-}
-},
-(error: any) => {
-this.toastService.presentToast('Network Issue.');
-}
-);
-} else {
-this.toastService.presentToast(
-'Please enter email or password.'
-);
-}
-}
+    }
 }

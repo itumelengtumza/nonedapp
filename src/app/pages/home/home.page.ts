@@ -37,10 +37,6 @@ export class HomePage implements OnInit {
         let weeks_pregnant = Math.floor(this.days_pregnant / 7);
         this.weeks_left = 40 - weeks_pregnant;
         this.baby_fruit_size = this.babyFruitSizes[this.weeks_left - 1]; // arrays starts at 0 position
-        console.log(this.baby_fruit_size);
-        console.log(this.authUser.dueDate);
-        console.log(date_now);
-        console.log(Date.parse(this.authUser.dueDate));
       } 
     });
   }

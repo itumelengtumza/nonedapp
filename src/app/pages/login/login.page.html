@@ -9,21 +9,21 @@
       <!--<app-logo></app-logo>-->
       <h1>Sign In</h1>
     </div>
-    <form>
+    <form [formGroup]="form">
     <ion-list>
       <ion-item>
         <ion-label position="stacked">Email</ion-label>
-        <ion-input autocomplete="off" type="text" name="email" [(ngModel)]="postData.email"></ion-input>
+        <ion-input formControlName="email" autocomplete="off" type="text" name="email"></ion-input>
       </ion-item>
     
       <ion-item>
         <ion-label position="stacked">Password</ion-label>
-        <ion-input autocomplete="off" type="password" name="password" [(ngModel)]="postData.password"></ion-input>
+        <ion-input formControlName="password" autocomplete="off" type="password" name="password"></ion-input>
       </ion-item>
     </ion-list>
     <div class="center">
       <p><a routerLink='/signup'>Create Account</a></p>
+      <ion-button share="round" [disabled]="!(form.valid)" color="noed" (click)="loginAction()"><span>Sign In</span></ion-button>
     </div>
-      <ion-button expand="block" share="round" color="noed" (click)="loginAction()">Sign In</ion-button>
     </form>
 </ion-content>

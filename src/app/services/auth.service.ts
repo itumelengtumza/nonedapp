@@ -41,4 +41,10 @@ this.userData$.next('');
 this.router.navigate(['/login']);
 });
 }
+deleteUserFromDB(user: any): Observable<any> {
+    this.storageService.removeStorageItem(AuthConstants.AUTH).then(res => {
+    this.userData$.next('');
+    });
+    return this.httpService.post('delUser', user);
+    }
 }

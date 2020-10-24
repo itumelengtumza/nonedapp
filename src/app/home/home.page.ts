@@ -27,7 +27,7 @@ export class HomePage implements OnInit {
     });
 
     popover.onDidDismiss().then((result) => {
-      console.log(result.data);
+      console.log(result);
     });
 
     return await popover.present();

@@ -2,35 +2,35 @@
   <ion-toolbar color="noed">
   <ion-title>NonEDApp</ion-title>
   </ion-toolbar>
-  </ion-header>
+</ion-header>
   
   <ion-content padding='true'>
     <div class="center">
      <!--<app-logo></app-logo>--> 
       <h1>Sign Up</h1>
     </div>
-  <form [formGroup]="form">
-  <ion-list>
-    <ion-item>
-      <ion-label position="stacked">Name</ion-label>
-      <ion-input  formControlName="name"autocomplete="off" name="name" type="text"></ion-input>
+    <form [formGroup]="form">
+    <ion-list>
+      <ion-item>
+        <ion-label position="stacked">Name</ion-label>
+        <ion-input  formControlName="name"autocomplete="off" name="name" type="text"></ion-input>
+        </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Email</ion-label>
+        <ion-input formControlName="email" autocomplete="off" name="email" type="email" ></ion-input>
       </ion-item>
-    <ion-item>
-    <ion-label position="stacked">Email</ion-label>
-    <ion-input formControlName="email" autocomplete="off" name="email" type="email" ></ion-input>
-    </ion-item>
-    <ion-item>
-    <ion-label position="stacked">Password</ion-label>
-    <ion-input formControlName="password" autocomplete="off" name="password" type="password"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="stacked">Due Date</ion-label>
-      <ion-input formControlName="dueDate" autocomplete="off" name="dueDate" type="date"></ion-input>
+      <ion-item>
+        <ion-label position="stacked">Password</ion-label>
+        <ion-input formControlName="password" autocomplete="off" name="password" type="password"></ion-input>
       </ion-item>
-    </ion-list>
-    <div class="center">
-      <p >Already have an account? <a routerLink='/login'>SIGN IN</a></p>
-    </div>
-    <ion-button expand="block" [disabled]="!(form.valid)" share="round" color="noed" (click)="signupAction()">SIGN UP</ion-button>
-    </form>
+      <ion-item>
+        <ion-label position="stacked">Due Date</ion-label>
+        <ion-input formControlName="dueDate" autocomplete="off" name="dueDate" type="date"></ion-input>
+        </ion-item>
+      </ion-list>
+      <div class="center">
+        <p>Already have an account? <a routerLink='/login'>SIGN IN</a></p>
+        <ion-button [disabled]="!(form.valid)" share="round" color="noed" (click)="signupAction()"><span>SIGN UP</span></ion-button>
+      </div>
+      </form>
     </ion-content>
