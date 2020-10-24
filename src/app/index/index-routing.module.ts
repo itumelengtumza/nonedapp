@@ -10,12 +10,15 @@ const routes: Routes = [
     component: IndexPage,
     canActivate: [IndexGuard],
     children: [
-      {
+      /*{
       path: '',
       loadChildren: () =>
-      import('../pages/welcome/welcome.module').then(
-      m => m.WelcomePageModule
-      )
+      import('../pages/welcome/welcome.module').then(m => m.WelcomePageModule)
+      },*/
+      {
+        path: '',
+        loadChildren: () =>
+        import('../pages/login/login.module').then(m => m.LoginPageModule)
       },
       {
       path: 'login',

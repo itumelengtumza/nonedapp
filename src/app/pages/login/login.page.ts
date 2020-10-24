@@ -18,7 +18,7 @@ password: ''
 };
 
 form = new FormGroup({
-    email: new FormControl('', Validators.required),
+    email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', Validators.required)
   });
 
@@ -30,6 +30,9 @@ private toastService: ToastService
 ) {}
 
 ngOnInit() {}
+
+get email() { return this.form.get('email'); }
+get password() { return this.form.get('password'); }
 
     loginAction() {
         this.postData.email = this.form.get('email').value.trim();

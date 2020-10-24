@@ -15,8 +15,10 @@
         <ion-label position="stacked">Email</ion-label>
         <ion-input formControlName="email" autocomplete="off" type="text" name="email"></ion-input>
       </ion-item>
-    
-      <ion-item>
+      <span *ngIf="email.touched && email.errors?.email">
+        Incorrect email format!
+      </span>
+      <ion-item [disabled]="!email.valid">
         <ion-label position="stacked">Password</ion-label>
         <ion-input formControlName="password" autocomplete="off" type="password" name="password"></ion-input>
       </ion-item>

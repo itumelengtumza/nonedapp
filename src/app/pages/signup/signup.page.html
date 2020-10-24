@@ -14,18 +14,37 @@
       <ion-item>
         <ion-label position="stacked">Name</ion-label>
         <ion-input  formControlName="name"autocomplete="off" name="name" type="text"></ion-input>
-        </ion-item>
-      <ion-item>
+      </ion-item>
+      <span *ngIf="name.touched && name.errors?.minlength">
+        Name must be at least 4 characters long!
+      </span>
+      <ion-item [disabled]="!name.valid">
         <ion-label position="stacked">Email</ion-label>
         <ion-input formControlName="email" autocomplete="off" name="email" type="email" ></ion-input>
       </ion-item>
-      <ion-item>
+      <span *ngIf="email.touched && email.errors?.email">
+        Incorrect email format!
+      </span>
+      <ion-item [disabled]="!email.valid">
         <ion-label position="stacked">Password</ion-label>
         <ion-input formControlName="password" autocomplete="off" name="password" type="password"></ion-input>
       </ion-item>
-      <ion-item>
+      <span *ngIf="password.touched && password.errors?.invalidPassword">
+          Password should have minimum 8 characters, at least 1 uppercase letter, 1 lowercase
+          letter and 1 number!
+      </span>
+      <ion-item [disabled]="!password.valid">
+        <ion-label position="stacked">Confirm Password</ion-label>
+        <ion-input formControlName="confirmPassword" autocomplete="off" name="confirmPassword" type="password"></ion-input>
+      </ion-item>
+      <span class="text-danger"
+          *ngIf="confirmPassword.touched && confirmPassword.errors?.passwordMismatch">
+          Passwords don't match!
+      </span>
+      <ion-item [disabled]="!confirmPassword.valid">
         <ion-label position="stacked">Due Date</ion-label>
-        <ion-input formControlName="dueDate" autocomplete="off" name="dueDate" type="date"></ion-input>
+        <ion-input onkeydown="return false" formControlName="dueDate" autocomplete="off" name="dueDate" 
+          type="date" [min]="pregnancyMinDate" [max]="pregnancyMaxDate"></ion-input>
         </ion-item>
       </ion-list>
       <div class="center">
