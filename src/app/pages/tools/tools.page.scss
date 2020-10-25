@@ -1,0 +1,19 @@
+ion-content {
+   
+}
+ion-col {
+    font-weight: bolder;
+    padding:5px;
+    div {
+        border: solid 1px #1f1f1f;
+        padding:5px;
+    }
+    img {
+      height: 10vh;
+      width: auto;
+    }
+    .side-text {
+        color: #272424;
+      font-size: 11px;
+    }
+  }

@@ -8,6 +8,8 @@ import { LoginPageRoutingModule } from './login-routing.module';
 
 import { LoginPage } from './login.page';
 import { ComponentsModule } from 'src/app/components/components.module';
+import { NgxSpinnerModule } from 'ngx-spinner';
+
 
 @NgModule({
   imports: [
@@ -17,7 +19,8 @@ import { ComponentsModule } from 'src/app/components/components.module';
     LoginPageRoutingModule,
     ComponentsModule, 
     FormsModule, 
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxSpinnerModule
   ],
   declarations: [LoginPage]
 })

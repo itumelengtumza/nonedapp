@@ -10,7 +10,8 @@ constructor(public toastController: ToastController) {}
 async presentToast(infoMessage: string) {
 const toast = await this.toastController.create({
 message: infoMessage,
-duration: 2000
+duration: 5000,
+position: 'top'
 });
 toast.present();
 }

@@ -13,8 +13,9 @@
     <ion-list>
       <ion-item>
         <ion-label position="stacked">Name</ion-label>
-        <ion-input  formControlName="name"autocomplete="off" name="name" type="text"></ion-input>
+        <ion-input class="capitalize" formControlName="name"autocomplete="off" name="name" type="text"></ion-input>
       </ion-item>
+      <div *ngIf="name.hasError('trimError')" > {{ name.errors.trimError.value }} </div>
       <span *ngIf="name.touched && name.errors?.minlength">
         Name must be at least 4 characters long!
       </span>
@@ -49,7 +50,9 @@
       </ion-list>
       <div class="center">
         <p>Already have an account? <a routerLink='/login'>SIGN IN</a></p>
-        <ion-button [disabled]="!(form.valid)" share="round" color="noed" (click)="signupAction()"><span>SIGN UP</span></ion-button>
+        <ion-button [disabled]="!(form.valid)" share="round" color="noed" (click)="signupAction(); form.reset()">
+           <span>SIGN UP</span>
+        </ion-button>
       </div>
       </form>
     </ion-content>

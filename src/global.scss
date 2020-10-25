@@ -61,3 +61,48 @@ ion-content {
         }
     }
 }
+
+.alert-wrapper.sc-ion-alert-md {
+    border-radius: 13px;
+    overflow: hidden;
+    max-width: 270px;
+    background-color: #f8f8f8;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    padding: 0 20px;
+}
+.alert-head.sc-ion-alert-md {
+    text-align: center;
+    padding: 12px 16px 7px;
+    border-bottom: 1px solid #c3b9b9;
+}
+.alert-title.sc-ion-alert-md {
+    margin: 0;
+    padding: 0;
+}
+.alert-title.sc-ion-alert-md {
+    font-size: 20px;
+    font-weight: 550;
+    color: #33232e;
+}
+
+.alert-sub-title.sc-ion-alert-md {
+    font-size: 14px;
+    color: #666;
+}
+.alert-head.sc-ion-alert-md+.alert-message.sc-ion-alert-md {
+    padding-top: 10px;
+    border-bottom: 1px solid #c3b9b9;
+}
+
+.alert-button-group.sc-ion-alert-md {
+    justify-content: center;
+}
+
+.alert-button.sc-ion-alert-md {
+    color: #7c8189;
+    font-weight: 600;
+    border: 1px solid;
+    padding: 4px;
+}
+

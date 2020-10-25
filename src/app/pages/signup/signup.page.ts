@@ -1,12 +1,31 @@
 import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 import { CustomvalidationService } from 'src/app/services/customvalidation.service';
+import { LoginPage } from '../login/login.page';
 import { AuthConstants } from './../../config/auth-constants';
 import { AuthService } from './../../services/auth.service';
 import { StorageService } from './../../services/storage.service';
 import { ToastService } from './../../services/toast.service';
+
+const trimValidator: ValidatorFn = (control: FormControl) => {
+  let a = control.value.startsWith();
+  if ( a != null ) {
+    if (control.value.startsWith() != null && control.value.startsWith(' ')) {
+      return {
+        'trimError': { value: 'Remove leading whitespace!' }
+      };
+    }
+    if (!control.value.endsWith() && control.value.endsWith(' ')) {
+      return {
+        'trimError': { value: 'Remove trailing whitespace!' }
+      };
+    }
+  }
+  return null;
+};
 
 @Component({
 selector: 'app-signup',
@@ -31,13 +50,13 @@ private authService: AuthService,
 private toastService: ToastService,
 private router: Router,
 private customValidator: CustomvalidationService,
-private fb: FormBuilder,
+private fb: FormBuilder, private alertCtrl: AlertController
 ) {
 }
 
 ngOnInit() {
   this.form = this.fb.group({
-    name: ['', [Validators.required, Validators.minLength(4)]],
+    name: ['', [Validators.required, Validators.minLength(4),trimValidator]],
     email: ['', [Validators.required, Validators.email]],
     password: ['', Validators.compose([Validators.required, this.customValidator.patternValidator()])],
     confirmPassword: ['', [Validators.required]],
@@ -63,12 +82,21 @@ get registerFormControl() {
   return this.form.controls;
 }
 
+async presentAlert(header:string, msg:string) {
+  const alert = await this.alertCtrl.create({
+    header: header,
+    message: msg,
+    buttons: ['OK']
+  });
+
+  await alert.present();
+}
+
 signupAction() {
   this.postData.email = this.form.get('email').value.trim();
   this.postData.name = this.form.get('name').value.trim();
   this.postData.password = this.form.get('password').value.trim();
   this.postData.dueDate = this.form.get('dueDate').value;
-    
   /*if (this.form.valid) {
     console.log("Form Submitted!");
     this.form.reset();
@@ -77,12 +105,15 @@ signupAction() {
   (res: any) => {
     this.toastService.presentToast(res.msg);
     if (!res.error) {// no error was encounted
-        this.form.reset();
+       
+        this.presentAlert("Success",res.msg);
         this.router.navigate(['login']);
+    }else {
+      this.presentAlert("Register Error",res.msg)
     }
   },
   (error: any) => {
-      this.toastService.presentToast('Network Issue.');
+    this.presentAlert('Login Error','Please check internet connection!');
   }
   );}
 }
