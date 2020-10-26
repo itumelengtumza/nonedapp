@@ -1,0 +1,37 @@
+.drink-target {
+    position: relative;
+    display: flex;                  
+    justify-content: space-between; 
+    margin-top:20px;
+    h5 {
+        color: #cb6fac;
+    }
+}
+ion-progress-bar {
+    height: 1.5vh;
+    border-radius: 5%;
+    color:#cb6fac;
+}
+.absolute-pos {
+    position: absolute;
+    top:0;
+    right: 0;
+    ion-icon {
+        background-color: white; 
+        border-radius: 0;
+        color: #cb6fac;
+        font-size: 16px;
+    }
+}
+
+.drink-target-all {
+    padding: 20px;
+}
+
+.drink-target-all {
+    ion-progress-bar {
+       //--background: green;
+       //--buffer-background: red;
+       --progress-background: #cb6fac;
+     }
+   }

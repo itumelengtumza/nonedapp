@@ -4,6 +4,47 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
+<ion-content class="center">
+  <div class="productivity center">
+    <a>
+      <ion-card>
+        <ion-card-content>
+          <div class="absolute-pos">
+            <ion-icon name="pencil-outline"></ion-icon>
+          </div> 
+          <div class="drink-target-all">         
+            <div class="drink-target">
+              <h5>DRINK TARGET</h5>
+              <h5>{{drink_target}}ml</h5>
+            </div>
+            <ion-progress-bar value={{progress}}></ion-progress-bar>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </a>
+  </div>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <a>
+          <div>
+            <img src="assets/img/glass_ml.png" />
+            <span class="side-text">
+              <p>300ml</p>
+            </span>
+          </div>
+        </a>
+      </ion-col>
+      <ion-col>
+        <a>
+          <div>
+            <img src="assets/img/clock.png" />
+            <span class="side-text">
+              <p>08:00</p>
+            </span>
+          </div>
+        </a>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

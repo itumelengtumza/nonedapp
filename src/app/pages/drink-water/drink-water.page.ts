@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DrinkWaterPage implements OnInit {
 
+  drink_target: number = 2000;
+  progress: number = 0.1;
   constructor() { }
 
   ngOnInit() {

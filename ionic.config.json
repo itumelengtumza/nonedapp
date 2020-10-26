@@ -1,7 +1,8 @@
 {
   "name": "noApp",
   "integrations": {
-    "capacitor": {}
+    "capacitor": {},
+    "cordova": {}
   },
   "type": "angular"
 }

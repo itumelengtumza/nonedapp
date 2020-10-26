@@ -10,11 +10,6 @@ const routes: Routes = [
     component: IndexPage,
     canActivate: [IndexGuard],
     children: [
-      /*{
-      path: '',
-      loadChildren: () =>
-      import('../pages/welcome/welcome.module').then(m => m.WelcomePageModule)
-      },*/
       {
         path: '',
         loadChildren: () =>

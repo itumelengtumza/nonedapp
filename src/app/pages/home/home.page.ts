@@ -42,7 +42,7 @@ export class HomePage implements OnInit {
   }
 
   public increaseProgress(){
-    this.progress = this.progress + 1; 
+    this.progress = this.progress + 0.1; 
   }
 
 }
