@@ -7,6 +7,7 @@ import { ToastService } from './../../services/toast.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { AlertController } from '@ionic/angular';
+import { CustomvalidationService } from 'src/app/services/customvalidation.service';
 
 @Component({
     selector: 'app-login',
@@ -21,14 +22,14 @@ export class LoginPage implements OnInit {
 
     form = new FormGroup({
         email: new FormControl('', [Validators.required, Validators.email]),
-        password: new FormControl('', Validators.required)
+        password: new FormControl('', [Validators.required, this.customValidator.patternValidator()])
     });
 
     constructor(private router: Router,private authService: AuthService,private storageService: StorageService,
                 private toastService: ToastService,private spinner: NgxSpinnerService, 
-                private alertCtrl: AlertController) {}
+                private alertCtrl: AlertController,private customValidator: CustomvalidationService) {}
 
-    ngOnInit() {/*this.presentAlert("Title Here","This is jus a test. Please don't be alarmed, stay calm and keep coding")*/}
+    ngOnInit() {}
 
     get email() { return this.form.get('email'); }
     get password() { return this.form.get('password'); }
@@ -51,9 +52,8 @@ export class LoginPage implements OnInit {
         (res: any) => {
             console.log(res);
             if (!res.error) {//no error encounted
-                this.form.reset();
-                this.spinner.hide();
                 this.toastService.presentToast(res.msg);
+                this.spinner.hide();
                 // Storing the User data.
                 this.storageService.store(AuthConstants.AUTH, res.user);
                 this.router.navigate(['/home']);
@@ -63,6 +63,7 @@ export class LoginPage implements OnInit {
             }
         },
         (error: any) => {
+            this.spinner.hide();
             console.log(error);
             this.presentAlert('Login Error','Please check internet connection!')
             }

@@ -3,22 +3,18 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { CustomvalidationService } from 'src/app/services/customvalidation.service';
-import { LoginPage } from '../login/login.page';
-import { AuthConstants } from './../../config/auth-constants';
 import { AuthService } from './../../services/auth.service';
-import { StorageService } from './../../services/storage.service';
-import { ToastService } from './../../services/toast.service';
 
 const trimValidator: ValidatorFn = (control: FormControl) => {
-  let a = control.value.startsWith();
-  if ( a != null ) {
-    if (control.value.startsWith() != null && control.value.startsWith(' ')) {
+  if (control.value !== null) { 
+    if (control.value.startsWith(' ')) {
       return {
         'trimError': { value: 'Remove leading whitespace!' }
       };
     }
-    if (!control.value.endsWith() && control.value.endsWith(' ')) {
+    if (control.value.endsWith(' ')) {
       return {
         'trimError': { value: 'Remove trailing whitespace!' }
       };
@@ -38,21 +34,16 @@ export class SignupPage implements OnInit {
   // used to set min and max values from type date input in html
   pregnancyMinDate: string;
   pregnancyMaxDate: string;
-postData = {
-password: '',
-email: '',
-name: '',
-dueDate:''
-};
+  postData = {
+  password: null,
+  email: null,
+  name: null,
+  dueDate:null
+  };
 
 constructor(
-private authService: AuthService,
-private toastService: ToastService,
-private router: Router,
-private customValidator: CustomvalidationService,
-private fb: FormBuilder, private alertCtrl: AlertController
-) {
-}
+private authService: AuthService,private router: Router,private customValidator: CustomvalidationService,
+private fb: FormBuilder, private alertCtrl: AlertController,private spinner: NgxSpinnerService) {}
 
 ngOnInit() {
   this.form = this.fb.group({
@@ -69,8 +60,7 @@ ngOnInit() {
   let pregnancyDurationInMilliSeconds = 40 * 7 * 24 * 3600 * 1000;
   let dateTodayInMilliSeconds = Date.now();
   this.pregnancyMinDate = formatDate(dateTodayInMilliSeconds, 'yyyy-MM-dd', 'en-ZA');
-  this.pregnancyMaxDate = formatDate((dateTodayInMilliSeconds + pregnancyDurationInMilliSeconds), 
-                                      'yyyy-MM-dd', 'en-ZA');
+  this.pregnancyMaxDate = formatDate((dateTodayInMilliSeconds + pregnancyDurationInMilliSeconds), 'yyyy-MM-dd', 'en-ZA');
 }
 
 get name() { return this.form.get('name'); }
@@ -93,27 +83,26 @@ async presentAlert(header:string, msg:string) {
 }
 
 signupAction() {
+  this.spinner.show();
   this.postData.email = this.form.get('email').value.trim();
   this.postData.name = this.form.get('name').value.trim();
   this.postData.password = this.form.get('password').value.trim();
   this.postData.dueDate = this.form.get('dueDate').value;
-  /*if (this.form.valid) {
-    console.log("Form Submitted!");
-    this.form.reset();
-  }*/
+  console.log(this.postData);
   this.authService.signup(this.postData).subscribe(
   (res: any) => {
-    this.toastService.presentToast(res.msg);
     if (!res.error) {// no error was encounted
-       
+        this.spinner.hide();
         this.presentAlert("Success",res.msg);
         this.router.navigate(['login']);
     }else {
-      this.presentAlert("Register Error",res.msg)
+      this.spinner.hide();
+      this.presentAlert("Registration Error",res.msg)
     }
   },
   (error: any) => {
-    this.presentAlert('Login Error','Please check internet connection!');
+    this.spinner.hide();
+    this.presentAlert('Connection Error','Please check your internet connection!');
   }
   );}
 }

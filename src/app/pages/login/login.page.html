@@ -22,13 +22,20 @@
         <ion-label position="stacked">Password</ion-label>
         <ion-input formControlName="password" autocomplete="off" type="password" name="password"></ion-input>
       </ion-item>
+      <span *ngIf="password.touched && password.errors?.invalidPassword">
+        Password should have a minimum of 8 characters, at least 1 uppercase letter, 1 lowercase
+        letter and 1 number! Please sign up first!
+    </span>
     </ion-list>
     <div class="center">
       <p><a routerLink='/signup'>Create Account</a></p>
       <ion-button share="round" [disabled]="!(form.valid)" color="noed" (click)="loginAction()"><span>Sign In</span></ion-button>
     </div>
     </form>
+    <div class="center">
+      <p>Forgotten password? <a routerLink='/reset-password'>Reset password</a></p>
+    </div>
     <ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="ball-spin-clockwise">
-      <p style="font-size: 20px; color: white">Loading...</p>
+      <p style="font-size: 20px; color: white">Please wait...</p>
     </ngx-spinner>
 </ion-content>

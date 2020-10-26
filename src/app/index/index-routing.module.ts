@@ -30,6 +30,12 @@ const routes: Routes = [
       loadChildren: () =>
       import('../pages/signup/signup.module').then(m => m.SignupPageModule)
       }
+      ,
+      {
+        path: 'reset-password',
+        loadChildren: () => 
+        import('../pages/reset-password/reset-password.module').then( m => m.ResetPasswordPageModule)
+      }
     ]
   }
 ];
