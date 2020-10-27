@@ -18,6 +18,7 @@ export class HomePage implements OnInit {
     const siteInfo = { id: 1, name: 'edupala' };
     const popover = await this.popoverCtrl.create({
       component: SettingsComponent,
+      cssClass: 'popover_setting',
       componentProps: {
         site: siteInfo
       }

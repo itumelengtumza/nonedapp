@@ -76,18 +76,17 @@ export class ResetPasswordPage implements OnInit {
       (res: any) => {
         console.log(res);
         if (!res.error) {// no error was encounted
-          
-          this.ionLoader.hideLoader();
           this.presentAlert("Success",res.msg);
           this.router.navigate(['login']);
-        }else {
           this.ionLoader.hideLoader();
-          this.presentAlert("Reset Password Error",res.msg)
+        }else {
+          this.presentAlert("Reset Password Error",res.msg);
+          this.ionLoader.hideLoader();
         }
       },
       (error: any) => {
-        this.ionLoader.hideLoader();
         this.presentAlert('Connection Error','Please check your internet connection!');
+        this.ionLoader.hideLoader();
       }
     );
   }

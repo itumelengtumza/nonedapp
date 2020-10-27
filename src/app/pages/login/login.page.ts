@@ -42,7 +42,7 @@ export class LoginPage implements OnInit {
     });
 
     constructor(private router: Router,private authService: AuthService,private storageService: StorageService,
-                private toastService: ToastService, private ionLoader: LoaderService,
+                private toastService: ToastService, public ionLoader: LoaderService,
                 private alertCtrl: AlertController,private customValidator: CustomvalidationService) {}
 
     ngOnInit() {}
@@ -74,14 +74,14 @@ export class LoginPage implements OnInit {
                 this.storageService.store(AuthConstants.AUTH, res.user);
                 this.router.navigate(['/tabs/home']);
             } else {
+                this.presentAlert('Login Error',res.msg);
                 this.ionLoader.hideLoader();
-                this.presentAlert('Login Error',res.msg)
             }
         },
         (error: any) => {
-            this.ionLoader.hideLoader();
             console.log(error);
-            this.presentAlert('Login Error','Please check internet connection!')
+            this.presentAlert('Login Error','Please check internet connection!');
+            this.ionLoader.hideLoader();
             }
         );
 
