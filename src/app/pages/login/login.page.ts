@@ -4,10 +4,26 @@ import { AuthConstants } from '../../config/auth-constants';
 import { AuthService } from './../../services/auth.service';
 import { StorageService } from './../../services/storage.service';
 import { ToastService } from './../../services/toast.service';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { NgxSpinnerService } from 'ngx-spinner';
+import { FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
 import { CustomvalidationService } from 'src/app/services/customvalidation.service';
+import { LoaderService } from 'src/app/services/loader.service';
+
+const trimValidator: ValidatorFn = (control: FormControl) => {
+    if (control.value !== null) { 
+      if (control.value.startsWith(' ')) {
+        return {
+          'trimError': { value: 'Remove leading whitespace!' }
+        };
+      }
+      if (control.value.endsWith(' ')) {
+        return {
+          'trimError': { value: 'Remove trailing whitespace!' }
+        };
+      }
+    }
+    return null;
+  };
 
 @Component({
     selector: 'app-login',
@@ -16,17 +32,17 @@ import { CustomvalidationService } from 'src/app/services/customvalidation.servi
 })
 export class LoginPage implements OnInit {
     postData = {
-        email: '',
-        password: ''
+        email: null,
+        password: null
     };
 
     form = new FormGroup({
-        email: new FormControl('', [Validators.required, Validators.email]),
+        email: new FormControl('', [Validators.required, Validators.email,trimValidator]),
         password: new FormControl('', [Validators.required, this.customValidator.patternValidator()])
     });
 
     constructor(private router: Router,private authService: AuthService,private storageService: StorageService,
-                private toastService: ToastService,private spinner: NgxSpinnerService, 
+                private toastService: ToastService, private ionLoader: LoaderService,
                 private alertCtrl: AlertController,private customValidator: CustomvalidationService) {}
 
     ngOnInit() {}
@@ -45,7 +61,7 @@ export class LoginPage implements OnInit {
       }
 
     loginAction() {
-        this.spinner.show();
+        this.ionLoader.showLoader();
         this.postData.email = this.form.get('email').value.trim();
         this.postData.password = this.form.get('password').value.trim();
         this.authService.login(this.postData).subscribe(
@@ -53,17 +69,17 @@ export class LoginPage implements OnInit {
             console.log(res);
             if (!res.error) {//no error encounted
                 this.toastService.presentToast(res.msg);
-                this.spinner.hide();
+                this.ionLoader.hideLoader();
                 // Storing the User data.
                 this.storageService.store(AuthConstants.AUTH, res.user);
-                this.router.navigate(['/home']);
+                this.router.navigate(['/tabs/home']);
             } else {
-                this.spinner.hide();
+                this.ionLoader.hideLoader();
                 this.presentAlert('Login Error',res.msg)
             }
         },
         (error: any) => {
-            this.spinner.hide();
+            this.ionLoader.hideLoader();
             console.log(error);
             this.presentAlert('Login Error','Please check internet connection!')
             }

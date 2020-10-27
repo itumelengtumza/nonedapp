@@ -9,7 +9,6 @@ import { SignupPageRoutingModule } from './signup-routing.module';
 import { SignupPage } from './signup.page';
 import { ComponentsModule } from 'src/app/components/components.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   imports: [
@@ -19,7 +18,6 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     ComponentsModule, 
     FormsModule, 
     ReactiveFormsModule,
-    NgxSpinnerModule
   ],
   declarations: [SignupPage]
 })

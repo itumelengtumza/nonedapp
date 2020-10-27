@@ -7,15 +7,13 @@ import { IonicModule } from '@ionic/angular';
 import { ResetPasswordPageRoutingModule } from './reset-password-routing.module';
 
 import { ResetPasswordPage } from './reset-password.page';
-import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ResetPasswordPageRoutingModule,
-    NgxSpinnerModule, 
+    ResetPasswordPageRoutingModule, 
     FormsModule, 
     ReactiveFormsModule
   ],

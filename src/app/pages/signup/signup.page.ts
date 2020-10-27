@@ -3,8 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
-import { NgxSpinnerService } from 'ngx-spinner';
 import { CustomvalidationService } from 'src/app/services/customvalidation.service';
+import { LoaderService } from 'src/app/services/loader.service';
 import { AuthService } from './../../services/auth.service';
 
 const trimValidator: ValidatorFn = (control: FormControl) => {
@@ -43,12 +43,12 @@ export class SignupPage implements OnInit {
 
 constructor(
 private authService: AuthService,private router: Router,private customValidator: CustomvalidationService,
-private fb: FormBuilder, private alertCtrl: AlertController,private spinner: NgxSpinnerService) {}
+private fb: FormBuilder, private alertCtrl: AlertController,private ionLoader: LoaderService) {}
 
 ngOnInit() {
   this.form = this.fb.group({
     name: ['', [Validators.required, Validators.minLength(4),trimValidator]],
-    email: ['', [Validators.required, Validators.email]],
+    email: ['', [Validators.required, Validators.email, trimValidator]],
     password: ['', Validators.compose([Validators.required, this.customValidator.patternValidator()])],
     confirmPassword: ['', [Validators.required]],
     dueDate: new FormControl('', Validators.required)
@@ -83,25 +83,25 @@ async presentAlert(header:string, msg:string) {
 }
 
 signupAction() {
-  this.spinner.show();
+  this.ionLoader.showLoader();
   this.postData.email = this.form.get('email').value.trim();
   this.postData.name = this.form.get('name').value.trim();
-  this.postData.password = this.form.get('password').value.trim();
+  this.postData.password = this.form.get('password').value;
   this.postData.dueDate = this.form.get('dueDate').value;
   console.log(this.postData);
   this.authService.signup(this.postData).subscribe(
   (res: any) => {
     if (!res.error) {// no error was encounted
-        this.spinner.hide();
+        this.ionLoader.hideLoader();
         this.presentAlert("Success",res.msg);
         this.router.navigate(['login']);
     }else {
-      this.spinner.hide();
+      this.ionLoader.hideLoader();
       this.presentAlert("Registration Error",res.msg)
     }
   },
   (error: any) => {
-    this.spinner.hide();
+    this.ionLoader.hideLoader();
     this.presentAlert('Connection Error','Please check your internet connection!');
   }
   );}

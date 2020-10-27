@@ -34,6 +34,9 @@
     height: 35vh;
     width: 100%;
   }
+  .center-text {
+    font-size: 22px;
+  }
   position: relative;
   ion-grid {
     position: absolute;
@@ -58,7 +61,7 @@
   }
 }
 .circular-border {
-  border: solid white 3px ;
+  border: solid white 5px ;
   border-radius: 50%;
 }
 .this-week {

@@ -12,7 +12,6 @@ export class HomePage implements OnInit {
   constructor(private popoverCtrl: PopoverController) { }
 
   ngOnInit() {
-    //window.location.reload();
   }
 
   async settingsPopover() {
