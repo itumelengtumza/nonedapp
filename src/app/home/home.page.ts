@@ -12,18 +12,16 @@ export class HomePage implements OnInit {
   constructor(private popoverCtrl: PopoverController) { }
 
   ngOnInit() {
+    //window.location.reload();
   }
 
-  async settingsPopover(ev: any) {
+  async settingsPopover() {
     const siteInfo = { id: 1, name: 'edupala' };
     const popover = await this.popoverCtrl.create({
       component: SettingsComponent,
-      event: ev,
-      cssClass: 'popover_setting',
       componentProps: {
         site: siteInfo
-      },
-      translucent: true
+      }
     });
 
     popover.onDidDismiss().then((result) => {
