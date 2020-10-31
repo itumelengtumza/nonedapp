@@ -69,24 +69,24 @@ export class ResetPasswordPage implements OnInit {
   }
 
   resetPasswordAction() {
-    this.ionLoader.showLoader();
+    //this.ionLoader.showLoader();
     this.postData.email = this.form.get('email').value.trim();
     this.postData.password = this.form.get('password').value.trim();
     this.authService.resetPassword(this.postData).subscribe(
       (res: any) => {
         console.log(res);
         if (!res.error) {// no error was encounted
+          //this.ionLoader.hideLoader();
           this.presentAlert("Success",res.msg);
           this.router.navigate(['login']);
-          this.ionLoader.hideLoader();
         }else {
+          //this.ionLoader.hideLoader();
           this.presentAlert("Reset Password Error",res.msg);
-          this.ionLoader.hideLoader();
         }
       },
       (error: any) => {
+        //this.ionLoader.hideLoader();
         this.presentAlert('Connection Error','Please check your internet connection!');
-        this.ionLoader.hideLoader();
       }
     );
   }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { PopoverController } from '@ionic/angular';
+import { IonRouterOutlet, Platform, PopoverController } from '@ionic/angular';
 import { SettingsComponent } from '../components/settings/settings.component';
+
 
 @Component({
   selector: 'app-home',
@@ -9,9 +10,14 @@ import { SettingsComponent } from '../components/settings/settings.component';
 })
 export class HomePage implements OnInit {
 
-  constructor(private popoverCtrl: PopoverController) { }
+  constructor(private popoverCtrl: PopoverController, private platform: Platform, private routerOutlet: IonRouterOutlet) { }
 
   ngOnInit() {
+    this.platform.backButton.subscribeWithPriority(-1, () => {
+      if (!this.routerOutlet.canGoBack()) {
+        navigator['app'].exitApp();
+      }
+    });
   }
 
   async settingsPopover() {

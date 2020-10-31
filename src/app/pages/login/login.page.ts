@@ -61,27 +61,28 @@ export class LoginPage implements OnInit {
       }
 
     loginAction() {
-        this.ionLoader.showLoader();
+        //this.ionLoader.showLoader();
         this.postData.email = this.form.get('email').value.trim();
         this.postData.password = this.form.get('password').value.trim();
         this.authService.login(this.postData).subscribe(
         (res: any) => {
             console.log(res);
             if (!res.error) {//no error encounted
+                //this.ionLoader.hideLoader();
                 this.toastService.presentToast(res.msg);
-                this.ionLoader.hideLoader();
                 // Storing the User data.
                 this.storageService.store(AuthConstants.AUTH, res.user);
                 this.router.navigate(['/tabs/home']);
             } else {
+                //this.ionLoader.hideLoader();
                 this.presentAlert('Login Error',res.msg);
-                this.ionLoader.hideLoader();
             }
         },
         (error: any) => {
             console.log(error);
+            //this.ionLoader.hideLoader();
             this.presentAlert('Login Error','Please check internet connection!');
-            this.ionLoader.hideLoader();
+            
             }
         );
 

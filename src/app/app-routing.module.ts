@@ -8,10 +8,6 @@ const routes: Routes = [
     import('./index/index.module').then(m => m.IndexPageModule)
   },
   {
-    path: '',
-    loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
-  },
-  {
     path: 'tabs',
     loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
   },

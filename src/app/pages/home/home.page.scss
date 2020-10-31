@@ -31,18 +31,18 @@
   }
 .header-img {
   img {
-    height: 35vh;
+    height: 40vh;
     width: 100%;
   }
   .center-text {
     font-size: 22px;
   }
   position: relative;
-  ion-grid {
+  .absolute-header {
     position: absolute;
-    top:0;
+    top:15px;
     width: 100%;
-    height: 100%;
+    height: 85%;
   }
   ion-row {
     height: 65%;
@@ -66,7 +66,7 @@
 }
 .this-week {
   position: relative;
-  margin-top: -20px;
+  margin-top: -50px;
   img {
     height: 8vh;
   }
