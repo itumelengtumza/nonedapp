@@ -6,7 +6,19 @@ import { ToolsPage } from './tools.page';
 const routes: Routes = [
   {
     path: '',
-    component: ToolsPage
+    component: ToolsPage,
+  },
+  {
+    path: 'weight-info',
+    loadChildren: () => import('../../pages/weight-info/weight-info.module').then( m => m.WeightInfoPageModule)
+  },
+  {
+    path: 'weight',
+    loadChildren: () => import('../../pages/weight/weight.module').then( m => m.WeightPageModule)
+  },
+  {
+    path: 'checklists',
+    loadChildren: () => import('../../pages/checklists/checklists.module').then( m => m.ChecklistsPageModule)
   }
 ];
 

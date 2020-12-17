@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  apiUrl: 'https://jiwemusic.org.za/phpApi2/'
+  apiUrl: 'http://localhost/android_api/'/*'https://jiwemusic.org.za/phpApi2/'*/
 };

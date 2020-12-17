@@ -17,6 +17,10 @@ export class AuthService {
         });
     }
 
+    postData(script_name:string, postData: any): Observable<any> {
+        return this.httpService.post(script_name, postData);
+    }
+
     login(postData: any): Observable<any> {
         return this.httpService.post('login', postData);
     }

@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="noed">
     <ion-title>Tools</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -7,68 +7,57 @@
 <ion-content class="center three-blocks">
   <ion-grid>
     <ion-row>
-      <ion-col size="4">
-        <a>
-          <div>
-            <img src="assets/img/weight_curve.png" />
-            <span class="side-text">
-              <p>WEIGHT</p>
-            </span>
-          </div>
-        </a>
+      <ion-col>
+        <div (click)="navigateTo('weight')">
+          <img src="assets/img/weight_curve.png" />
+          <span class="side-text">
+            <p>WEIGHT</p>
+          </span>
+        </div>
       </ion-col>
-      <ion-col size="4">
-        <a>
-          <div>
-            <img src="assets/img/checklist.png" />
-            <span class="side-text">
-              <p>CHECKLIST</p>
-            </span>
-          </div>
-        </a>
+      <ion-col routerLink="/tabs/tools/checklists">
+        <div>
+          <img src="assets/img/checklist.png" />
+          <span class="side-text">
+            <p>CHECKLISTS</p>
+          </span>
+        </div>
       </ion-col>
-      <ion-col size="4">
-        <a>
-          <div>
-            <img src="assets/img/check_ups.png" />
-            <span class="side-text">
-              <p>CHECK-UPS</p>
-            </span>
-          </div>
-        </a>
+      <ion-col>
+        <div>
+          <img src="assets/img/check_ups.png" />
+          <span class="side-text">
+            <p>CHECK-UPS</p>
+          </span>
+        </div>
       </ion-col>
     </ion-row>
     <ion-row>
-      <ion-col size="4">
-        <a>
-          <div>
-            <img src="assets/img/contraction_timer.png" />
-            <span class="side-text">
-              <p>CONTRACTIONS</p>
-            </span>
-          </div>
-        </a>
+      <ion-col> 
+        <div>
+          <img src="assets/img/contraction_timer.png" />
+          <span class="side-text">
+            <p>CONTRACTIONS</p>
+          </span>
+        </div>
       </ion-col>
-      <ion-col size="4">
-        <a>
-          <div>
-            <img src="assets/img/calendar.png" />
-            <span class="side-text">
-              <p>CALENDER</p>
-            </span>
-          </div>
-        </a>
+      <ion-col>
+        <div>
+          <img src="assets/img/calendar.png" />
+          <span class="side-text">
+            <p>CALENDER</p>
+          </span>
+        </div>
       </ion-col>
-      <ion-col size="4">
-        <a>
-          <div>
-            <img src="assets/img/kegel_exercises.png" />
-            <span class="side-text">
-              <p>KEGEL</p>
-            </span>
-          </div>
-        </a>
+      <ion-col>
+        <div>
+          <img src="assets/img/kegel_exercises.png" />
+          <span class="side-text">
+            <p>KEGEL</p>
+          </span>
+        </div>
       </ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>
+

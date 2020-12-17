@@ -8,6 +8,7 @@ import { FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms'
 import { AlertController } from '@ionic/angular';
 import { CustomvalidationService } from 'src/app/services/customvalidation.service';
 import { LoaderService } from 'src/app/services/loader.service';
+import { OfflineStorageService } from 'src/app/services/offline-storage.service';
 
 const trimValidator: ValidatorFn = (control: FormControl) => {
     if (control.value !== null) { 
@@ -43,7 +44,8 @@ export class LoginPage implements OnInit {
 
     constructor(private router: Router,private authService: AuthService,private storageService: StorageService,
                 private toastService: ToastService, public ionLoader: LoaderService,
-                private alertCtrl: AlertController,private customValidator: CustomvalidationService) {}
+                private alertCtrl: AlertController,private customValidator: CustomvalidationService,
+                private offlineStorageService: OfflineStorageService) {}
 
     ngOnInit() {}
 
@@ -71,6 +73,7 @@ export class LoginPage implements OnInit {
                 //this.ionLoader.hideLoader();
                 this.toastService.presentToast(res.msg);
                 // Storing the User data.
+                this.offlineStorageService.store(AuthConstants.AUTH, res.user);
                 this.storageService.store(AuthConstants.AUTH, res.user);
                 this.router.navigate(['/tabs/home']);
             } else {

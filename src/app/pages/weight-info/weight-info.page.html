@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar color="noed">
+    <ion-title>Weight-Info</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref='/tabs/tools'></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding='true'>
+  <div class="center">
+    <!--<app-logo></app-logo>-->
+    <h1>Weight Info</h1>
+  </div>
+  <form [formGroup]="form">
+  <ion-list>
+    
+    <ion-item>
+      <ion-label position="stacked">Pre Preg Weight</ion-label>
+      <ion-input formControlName="start_weight" autocomplete="off" type="number" name="start_weight" ></ion-input>
+    </ion-item>
+    <span *ngIf="start_weight.touched && start_weight.errors?.start_weight">
+      Incorrect start_weight format!
+    </span>
+    
+    <ion-item [disabled]="!start_weight.valid">
+      <ion-label position="stacked">Height</ion-label>
+      <ion-input formControlName="height" autocomplete="off" type="number" name="height" ></ion-input>
+    </ion-item>
+    
+    <ion-item [disabled]="!height.valid">
+      <ion-label position="stacked">Current Weight</ion-label>
+      <ion-input formControlName="current_weight" autocomplete="off" type="number" name="current_weight" ></ion-input>
+    </ion-item>
+    
+  </ion-list>
+  <div class="center">
+    <ion-button share="round" [disabled]="!(form.valid)" color="noed" (click)="setVals()"><span>Set Values</span></ion-button>
+  </div>
+  </form>
+</ion-content>

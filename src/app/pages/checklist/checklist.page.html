@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar color="noed">
+    <ion-title>Checklist {{header_title}}</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref='/tabs/tools/checklists'></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <div *ngFor="let entry of trimester_checklist">
+      <h3>{{entry.title}}</h3>
+      <ion-item *ngFor="let entry of entry.data">
+        <div>
+          <h5>{{entry.sub_title}}</h5>
+          <p>{{entry.text}}</p>
+        </div>
+        <ion-checkbox slot="end"></ion-checkbox>
+      </ion-item>
+    </div>
+  </ion-list>
+
+</ion-content>

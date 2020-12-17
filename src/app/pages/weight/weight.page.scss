@@ -1,0 +1,44 @@
+.absolute-divs {
+    div {
+        position: absolute;
+        span {
+            color: #cb6fac; 
+            text-decoration: underline; 
+        }
+    }
+    div:nth-child(1) {
+        top:2%;
+        left: 2%;
+    }
+    div:nth-child(2) {
+        top:2%;
+        right: 2%;
+        span {
+            text-decoration: none;
+        }
+    }
+    div:nth-child(3) { 
+        bottom:2%;
+        left: 2%; 
+    }
+    div:nth-child(4) {
+        bottom:2%;
+        right: 2%; 
+    }
+    div:nth-child(even) {
+        text-align: right;
+    }
+}
+.abs {
+    position: absolute;
+    span {
+        color: #cb6fac;
+    }
+}
+
+.modal-button {
+    ion-row {
+        height: 90vh;
+    }
+    
+}

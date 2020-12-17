@@ -43,6 +43,9 @@ ion-header {
     ion-title, ion-icon {
         color:#fff;
     }
+    ion-toolbar {
+        color: #fff;
+    }
 }
 
 input[type="date"]::-webkit-calendar-picker-indicator {
@@ -150,7 +153,7 @@ ion-content {
             color: #272424;
             font-size: 11px;
         }
-        a {
+        div {
             width: 100%;
         }
       }

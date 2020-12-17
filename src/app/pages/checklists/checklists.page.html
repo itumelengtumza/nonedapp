@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar color="noed">
+    <ion-title>Checklists</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref='/tabs/tools'></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="center three-blocks">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="4" routerLink="checklist" *ngFor="let entry of header_titles">
+        <div>
+          <img src="assets/img/checklist.png" />
+          <span class="side-text">
+            <p>{{entry}}</p>
+            <p>CHECKLIST</p>
+          </span>
+        </div>
+      </ion-col>
+      <ion-col size="4" routerLink="addchecklist">
+        <div>
+          <span class="side-text">
+            <p>ADD ANOTHER</p>
+            <ion-icon style="zoom:4;" name="add-circle"></ion-icon>
+            <p>CHECKLIST</p>
+          </span>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+

@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar color="noed">
+    <ion-title>Weight</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref='/tabs/tools'></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="ion-padding">
+    <ion-card>
+      <ion-card-content>
+        <ion-row (click)="go()">
+          <ion-col>
+            <round-progress [current]="current"
+              [radius]="45" [color]="'#cb6fac'" 
+              [stroke]="5" [max]="max">
+            </round-progress>
+            <div class="abs center">Gained<br/><span>{{gained}} kg</span></div>
+          </ion-col>
+        </ion-row>
+        <div class="absolute-divs">
+          <div>Pre Preg Weight<br/><span routerLink="/tabs/tools/weight-info">{{start_weight}} kg</span></div>
+          <div>Exp Final Weight<br/><span>{{exp_final_weight}} kg</span></div>
+          <div>Height<br/><span routerLink="/tabs/tools/weight-info">{{height}} m</span></div>
+          <div>Current Weight<br/><span routerLink="/tabs/tools/weight-info">{{current_weight}} kg</span></div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+    
+    <ion-card>
+      <ion-card-header class="center">
+        Expected Weight Gain
+      </ion-card-header>
+      <ion-card-content>
+        <canvas #lineCanvas style="position: relative; height:60vh; width:80vw"></canvas>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

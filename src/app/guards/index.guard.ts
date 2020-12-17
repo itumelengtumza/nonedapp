@@ -14,7 +14,7 @@ this.storageService
 .get(AuthConstants.AUTH)
 .then(res => {
 if (res) {
-this.router.navigate(['home']);
+this.router.navigate(['tabs/home']);
 resolve(false);
 } else resolve(true);
 })
