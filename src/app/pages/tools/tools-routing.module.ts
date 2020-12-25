@@ -19,6 +19,10 @@ const routes: Routes = [
   {
     path: 'checklists',
     loadChildren: () => import('../../pages/checklists/checklists.module').then( m => m.ChecklistsPageModule)
+  },
+  {
+    path: 'check-ups',
+    loadChildren: () => import('../../pages/check-ups/check-ups.module').then( m => m.CheckUpsPageModule)
   }
 ];
 

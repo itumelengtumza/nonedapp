@@ -24,10 +24,11 @@ export class ToolsPage implements OnInit {
                       on the ion-header title of the list, it will also be used as a str ref for 
                       storing checklist object({title: 'First', data: []}) using OfflineStorageService*/
 
-  constructor(private authService: AuthService, private offlineStorageService: OfflineStorageService, private router: Router) { 
-    this.checklist_page.list_data.push({title: 'First Trimester', data: []});
-    this.checklist_page.list_data.push({title: 'Second Trimester', data: []});
-    this.checklist_page.list_data.push({title: 'Third Trimester', data: []});
+  constructor(private authService: AuthService, private offlineStorageService: OfflineStorageService, 
+    private router: Router) { 
+    this.checklist_page.list_data.push({title: 'First Trimester'});
+    this.checklist_page.list_data.push({title: 'Second Trimester'});
+    this.checklist_page.list_data.push({title: 'Third Trimester'});
     this.checklist_page.header_title = 'Week By Week';
     this.offlineStorageService.store(AuthConstants.CHECKLISTS_TITLES[0],this.checklist_page);
     this.table_names = ['first_trimester', 'second_trimester', 'third_trimester'];
@@ -52,7 +53,7 @@ export class ToolsPage implements OnInit {
     }
   }
 
-  getTrimesterChecklist(table_name:string, ref_string) {
+  getTrimesterChecklist(table_name:string, ref_string:string) {
     this.postData.table_name = table_name;
     this.authService.postData('getTrimesterChecklist',this.postData).subscribe(
     (res: any) => {

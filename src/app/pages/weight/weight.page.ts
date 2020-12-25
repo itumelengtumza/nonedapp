@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Chart } from 'chart.js';
 import { AuthConstants } from 'src/app/config/auth-constants';
@@ -10,7 +10,7 @@ import { RepoService } from 'src/app/services/repo.service';
   templateUrl: './weight.page.html',
   styleUrls: ['./weight.page.scss'],
 })
-export class WeightPage {
+export class WeightPage implements OnInit {
 
   @ViewChild('lineCanvas') private lineCanvas: ElementRef;
   // before chart plot
@@ -25,36 +25,11 @@ export class WeightPage {
   your_plot_data = [];
   lower_gain_arr = [];
   higher_gain_arr = [];
-  your_data = 'your_plot_data';
+  your_data = '';
 
-  constructor(private router: Router, private repo: RepoService, private offlineStorageService: OfflineStorageService) { 
-    this.offlineStorageService.get(AuthConstants.INIT_WEIGHT_DATA).then((data) => {
-      if (data) {
-        this.start_weight = data.start_weight;
-        this.height = data.height;
-        this.current_weight = data.current_weight;
-        this.repo.homeData.subscribe(
-          data => { 
-            if (data) {
-              let current_data = { x: data.weeks_preg, y: this.current_weight };
-              this.offlineStorageService.get(this.your_data).then((data) => {
-                if (data) {
-                  console.log(data);
-                  this.your_plot_data = data;
-                  this.your_plot_data.push(current_data);
-                  this.offlineStorageService.store(this.your_data, this.your_plot_data);
-                } else {
-                  console.log('No value as yet!');
-                  this.your_plot_data.push(current_data);
-                  this.offlineStorageService.store(this.your_data, this.your_plot_data);
-                }
-                this.lineChartMethod();
-              });
-            }
-          }
-        );
-      } 
-    });
+  constructor(private router: Router, 
+    private offlineStorageService: OfflineStorageService) { 
+    
     
     //this.offlineStorageService.removeStorageItem(this.your_data);
     /*
@@ -62,6 +37,9 @@ export class WeightPage {
     xD.sort((a,b)=>a-b);
     console.log(xD);
     */
+  }
+  ngOnInit(): void {
+    //this.initData();
   }
 
   calcBmi (weight, height) {
@@ -218,5 +196,22 @@ export class WeightPage {
       },
     }
 });
+  }
+  initData() {
+    //this.offlineStorageService.removeStorageItem(AuthConstants.INIT_WEIGHT_DATA);
+    //this.offlineStorageService.removeStorageItem(AuthConstants.CURRENT_WEIGHT_DATA);
+    this.offlineStorageService.get(AuthConstants.INIT_WEIGHT_DATA).then((data) => {
+      this.start_weight = data.start_weight;
+      this.height = data.height;
+      this.current_weight = data.current_weight;
+    });
+    this.offlineStorageService.get(AuthConstants.CURRENT_WEIGHT_DATA).then((data) => {
+      this.your_plot_data = data;
+      console.log(data);
+      this.lineChartMethod();
+    });
+  }
+  ionViewDidEnter() {
+    this.initData();
   }
 }

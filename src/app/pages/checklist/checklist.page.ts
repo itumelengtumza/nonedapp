@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { AuthConstants } from 'src/app/config/auth-constants';
 import { OfflineStorageService } from 'src/app/services/offline-storage.service';
 
@@ -11,9 +12,10 @@ export class ChecklistPage implements OnInit {
   header_title = '';
   trimester_checklist = [];
 
-  constructor(private offlineStorageService: OfflineStorageService) { 
+  constructor(private offlineStorageService: OfflineStorageService, private route: ActivatedRoute) { 
     //this.offlineStorageService.clear();
-    this.offlineStorageService.get(AuthConstants.CHECKLISTS_TITLES[0]).then((res) => {
+    let id = this.route.snapshot.paramMap.get('id');
+    this.offlineStorageService.get(AuthConstants.CHECKLISTS_TITLES[id]).then((res) => {
       if (res) {
         console.log(res);
         this.header_title = res.header_title;

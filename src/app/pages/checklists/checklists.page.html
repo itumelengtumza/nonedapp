@@ -10,20 +10,23 @@
 <ion-content class="center three-blocks">
   <ion-grid>
     <ion-row>
-      <ion-col size="4" routerLink="checklist" *ngFor="let entry of header_titles">
-        <div>
-          <img src="assets/img/checklist.png" />
-          <span class="side-text">
-            <p>{{entry}}</p>
-            <p>CHECKLIST</p>
+      <ion-col size="4" *ngFor="let entry of header_titles; let i = index">
+        <div><!--style is set in global.scss, solid border and space between ion-col -->
+          <span routerLink="checklist/{{i}}">
+            <img src="assets/img/checklist.png" />
+            <span class="side-text">
+              <p>{{entry}}</p>
+              <p>CHECKLIST</p>
+            </span>
           </span>
+          <ion-icon class="trash-icon" name="trash" *ngIf="i>0" (click)="confirmDel(i)"></ion-icon>
         </div>
       </ion-col>
-      <ion-col size="4" routerLink="addchecklist">
+      <ion-col size="4" routerLink="addchecklist/{{header_titles.length}}">
         <div>
           <span class="side-text">
             <p>ADD ANOTHER</p>
-            <ion-icon style="zoom:4;" name="add-circle"></ion-icon>
+            <ion-icon class="add-icon" name="add-circle"></ion-icon>
             <p>CHECKLIST</p>
           </span>
         </div>

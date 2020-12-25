@@ -1,0 +1,29 @@
+ion-row {
+    padding: 5px 10px;
+    background-color: #cb6fac;
+    color: white;
+    ion-col:nth-child(1) {
+        align-items: flex-start;
+        h6, ul {
+            margin: 1px;
+            font-weight: 700;
+        }
+    }
+    ion-col:nth-child(2) {
+        align-items: flex-end;
+        h6, ul {
+            margin: 0;
+            font-weight: 700;
+        }
+    }
+}
+
+ion-icon {
+    color: #fff;
+    zoom: 4;
+}
+
+ul li::marker {
+    text-align: right !important;
+    text-align-last: right !important;
+}

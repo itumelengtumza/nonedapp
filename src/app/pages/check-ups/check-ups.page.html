@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar color="noed">
+    <ion-title>Check-Ups</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref='/tabs/tools'></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card routerLink="check-up-detail">
+    <ion-row>
+      <ion-col size="4">
+        <h6>MONDAY</h6>
+        <h6>20 DEC 2020</h6>
+        <h6>KEKANASTAD CLINIC</h6>
+        <h6>10:30</h6>
+      </ion-col>
+      <ion-col>
+        <li>confirmation that you are pregnant</li>
+        <li>due date calculation</li>
+        <li>blood pressure, height and weight</li>
+        <li>medical and family history</li>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+  <ion-fab vertical="bottom" horizontal="end" routerLink="add-check-up">
+    <ion-fab-button color="noed">
+      <ion-icon name="add-circle"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  
+</ion-content>
