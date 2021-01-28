@@ -7,6 +7,37 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content padding='true'>
+  <div class="center">
+    <!--<app-logo></app-logo>-->
+    <h1>{{h1_text}}</h1>
+  </div>
+  <form [formGroup]="form">
+  <ion-list>
+    <ion-item>
+      <ion-label position="stacked">Date</ion-label>
+      <ion-input onkeydown="return false" formControlName="date" 
+      autocomplete="off" type="datetime-local" [min]="pregnancyMinDate"></ion-input>
+    </ion-item>
+    <span *ngIf="date.hasError('trimError')" > {{ date.errors.trimError.value }} </span>
 
+    <ion-item [disabled]="!form.controls[form_group_names[0]].valid">
+      <ion-label position="stacked">Medical Center</ion-label>
+      <ion-input class="title_case" formControlName="medical_center" autocomplete="off" type="text" name="medical_center"></ion-input>
+    </ion-item>
+    <span *ngIf="medical_center.hasError('trimError')" > {{ medical_center.errors.trimError.value }} </span>
+    <div style="position: relative;" *ngFor="let entry of text_names; let i = index">
+      <ion-item [disabled]="(!form.controls[form_group_names[i+1]].valid||!form.controls[form_group_names[1]].valid)&&fromPickList">
+        <ion-label position="stacked">{{form_group_names[i+2]}}</ion-label>
+        <ion-textarea class="first-letter-capital" [formControl]="form.controls[entry]" autocomplete="off" type="text" name="{{entry}}"></ion-textarea>
+        <span *ngIf="form.controls[text_names[i]].hasError('trimError')" > {{ form.controls[text_names[i]].errors.trimError.value }} </span>
+      </ion-item>
+      <ion-icon *ngIf="i>0" class="trash-icon" name="trash" (click)="confirmDel(i)"></ion-icon>
+    </div>
+  </ion-list>
+  <div class="center">
+    <ion-button share="round" [disabled]="!(form.valid)" color="noed" (click)="createInsert()"><span>Finish</span></ion-button>
+    <p><a (click)="addRow()">Add another test</a> or <a (click)="showList()">Pick from list</a></p>
+  </div>
+  </form>
 </ion-content>

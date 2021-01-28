@@ -32,7 +32,7 @@ export class SettingsComponent implements OnInit {
 
 profile() {
   // code for setting wifi option in apps
-  this.popoverCtrl.dismiss();
+  this.popoverCtrl.dismiss({from:'itu'});
 }
 
 logout() {

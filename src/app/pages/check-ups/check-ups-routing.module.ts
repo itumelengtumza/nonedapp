@@ -9,11 +9,7 @@ const routes: Routes = [
     component: CheckUpsPage
   },
   {
-    path: 'add-check-up',
-    loadChildren: () => import('../../pages/add-check-up/add-check-up.module').then( m => m.AddCheckUpPageModule)
-  },
-  {
-    path: 'check-up-detail',
+    path: 'check-up-detail/:id',
     loadChildren: () => import('../../pages/check-up-detail/check-up-detail.module').then( m => m.CheckUpDetailPageModule)
   }
 ];

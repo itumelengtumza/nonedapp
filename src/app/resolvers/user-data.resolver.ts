@@ -8,7 +8,7 @@ export class UserDataResolver {
 constructor(private authService: AuthService) {}
 
 resolve() {
-console.log('Hello');
+console.log('Hello from user data resolver!');
 return this.authService.getUserData();
 }
 }

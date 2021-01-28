@@ -11,7 +11,9 @@ import { AuthService } from 'src/app/services/auth.service';
 export class ChecklistsPage implements OnInit {
 
   header_titles = [];
-  constructor(private offlineStorageService: OfflineStorageService, private authService: AuthService) { 
+  constructor(private offlineStorageService: OfflineStorageService, private authService: AuthService) { }
+
+  ngOnInit() {
     for (var i = 0; i < AuthConstants.CHECKLISTS_TITLES.length; i++) {
       this.offlineStorageService.get(AuthConstants.CHECKLISTS_TITLES[i]).then((res) => {
         if (res) {
@@ -23,9 +25,6 @@ export class ChecklistsPage implements OnInit {
         }
       });
     }
-  }
-
-  ngOnInit() {
   }
 
   ionViewDidEnter() {

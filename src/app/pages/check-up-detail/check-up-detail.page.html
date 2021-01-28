@@ -8,5 +8,21 @@
 </ion-header>
 
 <ion-content>
-
+  <ion-card>
+    <ion-row>
+      <ion-col>
+        <div class="upper-case">
+          <div class="center">
+            <h6>{{checkup?.date}}</h6>
+            <h6>Place: {{checkup?.med_center_name}}</h6>
+          </div>
+          <br/>
+          <h6>TESTS TO BE DONE:</h6>
+        </div>
+        <ul>
+          <li *ngFor="let test of checkup?.tests">{{test}}</li>
+        </ul>
+      </ion-col>
+    </ion-row>
+  </ion-card>
 </ion-content>

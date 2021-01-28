@@ -1,0 +1,11 @@
+<ion-content>
+    <ion-list>
+      <div *ngFor="let entry of user_type; let i = index">
+        <ion-item >
+          <p>{{entry.text}}</p>
+          <ion-checkbox (ionChange)="do_sth(i)" slot="end" color={{entry.color}} name="user_type_checkbox"></ion-checkbox>
+        </ion-item>
+      </div>
+    </ion-list>
+    <ion-button expand="block" [disabled]="!(formValid)" share="round" color="success" (click)="pickAction()">Pick</ion-button>
+</ion-content>

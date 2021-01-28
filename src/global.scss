@@ -25,19 +25,35 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
+.upper-case {
+    text-transform: uppercase;
+}
+.first-letter-capital{
+    display: inline-block;
+
+}
+.first-letter-capital:first-letter {
+    text-transform: uppercase;
+}
+.title_case {text-transform: capitalize;}
+
 .cal-modal {
     --height: 80%;
     --border-radius: 10px;
     padding: 25px;
 }
 
-.popover_setting .popover-content {
+.popover_setting .popover-content, .popover_checkup_list .popover-content {
     --min-width: 50% !important;
     --min-height: 150px !important;
     --ion-background-color: #cb6fac;
     --ion-text-color: #ffffff;
     background-color: #cb6fac;
 }
+.popover_checkup_list .popover-content {
+    --min-width: 80% !important;
+}
+
 
 ion-header {
     ion-title, ion-icon {

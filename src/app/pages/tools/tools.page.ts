@@ -25,18 +25,28 @@ export class ToolsPage implements OnInit {
                       storing checklist object({title: 'First', data: []}) using OfflineStorageService*/
 
   constructor(private authService: AuthService, private offlineStorageService: OfflineStorageService, 
-    private router: Router) { 
-    this.checklist_page.list_data.push({title: 'First Trimester'});
-    this.checklist_page.list_data.push({title: 'Second Trimester'});
-    this.checklist_page.list_data.push({title: 'Third Trimester'});
-    this.checklist_page.header_title = 'Week By Week';
-    this.offlineStorageService.store(AuthConstants.CHECKLISTS_TITLES[0],this.checklist_page);
-    this.table_names = ['first_trimester', 'second_trimester', 'third_trimester'];
-    for (let i = 0; i < this.checklist_page.list_data.length; i++) {
-      this.getTrimesterChecklist(this.table_names[i],this.checklist_page.list_data[i].title);
-    }
-  }
+    private router: Router) { }
+
   ngOnInit() {
+    //this.offlineStorageService.clear();
+    //let id = this.route.snapshot.paramMap.get('id');
+    this.offlineStorageService.get(AuthConstants.CHECKLISTS_TITLES[0]).then((res) => {
+      if (res) {
+        console.log(res); 
+      }
+      else {
+        console.log('Nothing as yet, let\'s fix that!');
+        this.checklist_page.list_data.push({title: 'First Trimester'});
+        this.checklist_page.list_data.push({title: 'Second Trimester'});
+        this.checklist_page.list_data.push({title: 'Third Trimester'});
+        this.checklist_page.header_title = 'Week By Week';
+        this.offlineStorageService.store(AuthConstants.CHECKLISTS_TITLES[0],this.checklist_page);
+        this.table_names = ['first_trimester', 'second_trimester', 'third_trimester'];// as stored from external db
+        for (let i = 0; i < this.checklist_page.list_data.length; i++) {
+          this.getTrimesterChecklist(this.table_names[i],this.checklist_page.list_data[i].title);
+        }
+      }
+    });
     
   }
 
@@ -50,6 +60,15 @@ export class ToolsPage implements OnInit {
           this.router.navigate(['/tabs/tools/weight-info/']);
         }
       });
+    } else if (str == 'check-ups') {
+      this.offlineStorageService.get(AuthConstants.CHECKUPS).then((data) => {
+        if (data) {
+          this.router.navigate(['/tabs/tools/check-ups']);
+        }
+        else {
+          this.router.navigate(['/tabs/tools/add-check-up/']);
+        }
+      });
     }
   }
 
@@ -61,6 +80,7 @@ export class ToolsPage implements OnInit {
           console.log(res);
           console.log('from external server');
             this.offlineStorageService.store(ref_string, res);
+            // e.g. this.offlineStorageService.store('First Trimester', [{id:'1',sub_title:..,text:..,}, ...])
         } else {
             console.log('Post Error',res.msg);
         }

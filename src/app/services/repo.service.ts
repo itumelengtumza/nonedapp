@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { AuthService } from './auth.service';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
@@ -6,7 +6,7 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class RepoService {
+export class RepoService implements OnInit {
 
   home_data = {
     baby_fruit_size: null,
@@ -30,7 +30,8 @@ export class RepoService {
   "Pumpkin", "Watermelon", "Jackfruit"
 ];
 
-  constructor(private auth: AuthService) { 
+  constructor(private auth: AuthService) {}
+  ngOnInit(): void {
     this.auth.userData$.subscribe((res:any) => {
       if(res.dueDate !== undefined) {
         let date_now = Date.now();

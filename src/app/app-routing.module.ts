@@ -26,6 +26,10 @@ const routes: Routes = [
   {
     path: 'event-page',
     loadChildren: () => import('./pages/event-page/event-page.module').then( m => m.EventPagePageModule)
+  },
+  {
+    path: 'add-tasks',
+    loadChildren: () => import('./pages/add-tasks/add-tasks.module').then( m => m.AddTasksPageModule)
   }
 ];
 @NgModule({

@@ -23,6 +23,10 @@ const routes: Routes = [
   {
     path: 'check-ups',
     loadChildren: () => import('../../pages/check-ups/check-ups.module').then( m => m.CheckUpsPageModule)
+  },
+  {
+    path: 'add-check-up',
+    loadChildren: () => import('../../pages/add-check-up/add-check-up.module').then( m => m.AddCheckUpPageModule)
   }
 ];
 

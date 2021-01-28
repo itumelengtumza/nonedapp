@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar color="noed">
+    <ion-title>{{mom_or_baby}}</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref='/tabs/home'></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngIf="preg_details.weekly_tip">
+    <ion-card-header>
+      <ion-card-title>
+        Weekely Tip
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      {{preg_details.weekly_tip}}
+    </ion-card-content>
+    
+  </ion-card>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>
+        Week {{weeks_preg}}
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      {{preg_details.text}}
+    </ion-card-content>
+    
+  </ion-card>
+</ion-content>

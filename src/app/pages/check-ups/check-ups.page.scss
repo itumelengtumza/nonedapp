@@ -10,7 +10,7 @@ ion-row {
         }
     }
     ion-col:nth-child(2) {
-        align-items: flex-end;
+        align-items: flex-start;
         h6, ul {
             margin: 0;
             font-weight: 700;
@@ -18,12 +18,28 @@ ion-row {
     }
 }
 
-ion-icon {
-    color: #fff;
-    zoom: 4;
+.text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
 }
 
-ul li::marker {
-    text-align: right !important;
-    text-align-last: right !important;
+ion-icon {
+    color: #fff;
 }
+
+ion-fab-button ion-icon {
+    zoom: 4;
+    background: transparent;
+}
+
+.trash-icon {
+    position: absolute;
+    bottom: 5px;
+    right: 20px;
+    z-index: 2;
+}
+
+

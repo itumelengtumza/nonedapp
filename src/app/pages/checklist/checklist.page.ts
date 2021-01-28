@@ -12,7 +12,9 @@ export class ChecklistPage implements OnInit {
   header_title = '';
   trimester_checklist = [];
 
-  constructor(private offlineStorageService: OfflineStorageService, private route: ActivatedRoute) { 
+  constructor(private offlineStorageService: OfflineStorageService, private route: ActivatedRoute) {}
+
+  ngOnInit() {
     //this.offlineStorageService.clear();
     let id = this.route.snapshot.paramMap.get('id');
     this.offlineStorageService.get(AuthConstants.CHECKLISTS_TITLES[id]).then((res) => {
@@ -38,10 +40,6 @@ export class ChecklistPage implements OnInit {
         console.log('nothing as yet!');
       }
     });
-    
-  }
-
-  ngOnInit() {
   }
  
 }

@@ -6,7 +6,6 @@ import { StorageService } from './../../services/storage.service';
 import { ToastService } from './../../services/toast.service';
 import { FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
-import { CustomvalidationService } from 'src/app/services/customvalidation.service';
 import { LoaderService } from 'src/app/services/loader.service';
 import { OfflineStorageService } from 'src/app/services/offline-storage.service';
 
@@ -36,8 +35,8 @@ export class AddchecklistPage implements OnInit {
     checklist_title: null,
     text_arr: []
 };
-form_group_names = ['checklist_title','text1'];
-text_names = ['text1'];
+form_group_names = ['checklist_title','Item 1'];
+text_names = ['Item 1'];
 group = {};
 form: FormGroup;
 h1_text = '';
@@ -78,7 +77,7 @@ async presentAlert(header:string, msg:string) {
 
   addRow() {
     let i = this.form_group_names.length;
-    let new_text = 'text' + i;
+    let new_text = 'Item ' + i;
     this.form_group_names.push(new_text);
     this.text_names.push(new_text);
     this.group[this.form_group_names[i]] = new FormControl('', [Validators.required,trimValidator,Validators.minLength(6)]);
@@ -89,9 +88,13 @@ async presentAlert(header:string, msg:string) {
   }
 
   confirmDel(index:number) {
-    console.log(index);
-    let res = confirm('Delete '+this.form.get(this.text_names[index]).value+' text?');
-    if (res) {
+    if (this.form.get(this.text_names[index]).value.trim().length > 0) {
+      let res = confirm('Delete '+this.text_names[index]+'?');
+      if (res) {
+        this.removeRow(index);
+      }
+    }
+    else {
       this.removeRow(index);
     }
   }
